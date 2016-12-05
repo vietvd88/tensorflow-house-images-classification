@@ -4,9 +4,9 @@ For more details, please read 2 below articles:
     - https://codelabs.developers.google.com/codelabs/tensorflow-for-poets/#0  
 Here are steps I used to classify over 60,000 images into 4 classes: floor plans, map, inside, outside.  
 
-1. First of all, I select about 200 images for each class by hand.
+1. First of all, select about 200 images for each class by hand.
 
-2. After that, I use them to retrain Inceptionv3 network in tensorflow as following:  
+2. After that, use them to retrain Inceptionv3 network in tensorflow as following:  
     - create a "house/training" folder contains 4 folders corresponding to 4 classes: floor plans, map, inside, outside.  
         Each folder contains 200 images which selected by hand.  
         Here is folder structure after creating:  
