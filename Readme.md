@@ -1,6 +1,9 @@
 In this project, we retrain Inception's Final Layer for new classes in tensorflow framework.
+
 For more details, please read 2 below articles:
+
     - https://www.tensorflow.org/versions/master/how_tos/image_retraining/index.html
+    
     - https://codelabs.developers.google.com/codelabs/tensorflow-for-poets/#0
 
 Here are steps I used to classify over 60,000 images into 4 classes: floor plans, map, inside, outside.
