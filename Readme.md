@@ -50,8 +50,7 @@ Here are steps I used to classify over 60,000 images into 4 classes: floor plans
 
 5. Use lable_image.py script to predict with all remaining images.
 
-Here is project folder structure after classification:
-
+Here is project folder structure after classification:  
     - bottlenecks : a folder stores cached training data for training process
 
     - inception : a folder stores google's inceptionv3 model data
@@ -83,5 +82,5 @@ Here is project folder structure after classification:
         - map
 
         - outside
-        
+
     - unclassified-images : contains unclassified images
