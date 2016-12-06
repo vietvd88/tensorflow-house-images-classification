@@ -51,21 +51,21 @@ Here are steps to create training data model over 60,000 images into 4 classes: 
 
         python label_image.py --output_dir=prediction/ --image_path=unclassified-images/ --threshold=90  
         
-    - image_path: a unclassified folder or image
-    - output_dir: a folder to hold images after classifying
+    - image_path: a unclassified folder or image (only support jpeg images now)  
+    - output_dir: a folder to hold images after classifying  
     - threshold: Percent threshold to decide an image is belong to a class  
     
     **Example:**
         
-        python label_image.py --image_path=tests/house12.jpg
+        python label_image.py --image_path=tests/outside1.jpg
         
     **Output:**
-    >   outside (score = 0.99226)  
-    >   inside (score = 0.00475)  
-    >   map (score = 0.00227)  
-    >   floor plans (score = 0.00072)  
+    >   outside (score = 0.99965)  
+    >   map (score = 0.00016)  
+    >   floor plans (score = 0.00014)  
+    >   inside (score = 0.00006)  
 
-    With result above, outside probability = 99.22%
+    With result above, outside probability = 99.96%
     
     **Prediction Report:**
 
