@@ -68,7 +68,8 @@ Here are steps to create training data model over 60,000 images into 4 classes: 
     With result above, outside probability = 99.22%
     
     **Prediction Report:**
-        Place 939 images from internet into sample folder and classify them. 
+
+    Place 939 images from internet into sample folder and classify them. 
         
         python label_image.py --output_dir=prediction/ --image_path=sample/ --threshold=80
         
