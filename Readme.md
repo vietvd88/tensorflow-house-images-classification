@@ -56,13 +56,16 @@ Here are steps to create training data model over 60,000 images into 4 classes: 
     - threshold: Percent threshold to decide an image is belong to a class  
     
     **Example:**
+        Place 939 images from internet into sample folder and classify them. 
         
-        python label_image.py --image_path=tests/house12.jpg
+        python label_image.py --output_dir=prediction/ --image_path=sample/ --threshold=80
         
     **Output:**
-    >   outside (score = 0.99226)
-    >   inside (score = 0.00475)
-    >   map (score = 0.00227)
-    >   floor plans (score = 0.00072)
+    >   9 images are classified incorrectly
+    >   72 iamges can not be classified
+    >   858 images are classified correctly
+    >   correct rate = 858/939 = 91.4%
 
-    With result above, outside probability = 99.22%
+    In 72 iamges can not be classified:
+    >  some of them cannot also be classified by manually.
+    >  some of them are very different from tranining set. So maybe need to add some training data for vietnam.
