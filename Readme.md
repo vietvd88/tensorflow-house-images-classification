@@ -34,10 +34,12 @@ Here are steps to create training data model over 60,000 images into 4 classes: 
     
     3.3 Classify next images by label_image.py
     
-        python label_image.py --output_dir=prediction/ --image_path=unclassified-images/ --threshold=90
-            --image_path: a unclassified folder or image
-            --output_dir: a folder to hold images after classifying
-            --threshold:Percent threshold to decide an image is belong to a class
+        python label_image.py --output_dir=prediction/ --image_path=unclassified-images/ --threshold=90  
+        
+    - image_path: a unclassified folder or image
+    - output_dir: a folder to hold images after classifying
+    - threshold: Percent threshold to decide an image is belong to a class  
+    
     After this commands, images will be moved to images folder above accordingly.
     
     3.4 Check again images folder above manually to correct if neccessary.
@@ -47,11 +49,15 @@ Here are steps to create training data model over 60,000 images into 4 classes: 
 4. **Use label_image.py script to predict images with training model data above.**  
     Finally, we can use training mode data above to predict images
 
-        python label_image.py image_folders | image file
+        python label_image.py --output_dir=prediction/ --image_path=unclassified-images/ --threshold=90  
+        
+    - image_path: a unclassified folder or image
+    - output_dir: a folder to hold images after classifying
+    - threshold: Percent threshold to decide an image is belong to a class  
     
     **Example:**
         
-        python label_image.py tests/house12.jpg
+        python label_image.py --image_path=tests/house12.jpg
         
     **Output:**
     >   outside (score = 0.99226)
