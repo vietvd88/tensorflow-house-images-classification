@@ -34,7 +34,10 @@ Here are steps to create training data model over 60,000 images into 4 classes: 
     
     3.3 Classify next images by label_image.py
     
-        python label_image.py -t image_folders | image file
+        python label_image.py --output_dir=prediction/ --image_path=unclassified-images/ --threshold=90
+            --image_path: a unclassified folder or image
+            --output_dir: a folder to hold images after classifying
+            --threshold:Percent threshold to decide an image is belong to a class
     After this commands, images will be moved to images folder above accordingly.
     
     3.4 Check again images folder above manually to correct if neccessary.
