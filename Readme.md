@@ -1,54 +1,59 @@
 In this project, we retrain Inception's Final Layer for new classes in tensorflow framework.  
 For more details, please read 2 below articles:  
-    - https://www.tensorflow.org/versions/master/how_tos/image_retraining/index.html  
-    - https://codelabs.developers.google.com/codelabs/tensorflow-for-poets/#0  
-Here are steps I used to classify over 60,000 images into 4 classes: floor plans, map, inside, outside.  
+-   https://www.tensorflow.org/versions/master/how_tos/image_retraining/index.html  
+-   https://codelabs.developers.google.com/codelabs/tensorflow-for-poets/#0
 
-1. First of all, select about 200 images for each class by hand.
+Here are steps to create training data model over 60,000 images into 4 classes:  floor plans,  map, inside, outside.  
 
-2. After that, use them to retrain Inceptionv3 network in tensorflow as following:  
-    - create a "house/training" folder contains 4 folders corresponding to 4 classes: floor plans, map, inside, outside.  
-        Each folder contains 200 images which selected by hand.  
-        Here is folder structure after creating:  
-        + house:
-            + training:
-                + floor_plans
-                + map
-                + inside
-                + outside
-    - create a docker image and map "house" folder with "house" folder in docker by command:  
-        docker run -it -v ~/house:/house  gcr.io/tensorflow/tensorflow:latest-devel
+1. **In project folder (Ex: **house**), creating training/ for classified images.**
+   Create subfolder accordingly:
+    + house/
+        + training/
+            + floor_plans/
+            + map/
+            + inside/
+            + outside/
+2.  **Classify first 200 images manually, move images to folder above accordingly.**  
+3. **Retrain Inceptionv3 network in tensorflow as steps:**  
+    3.1   Run docker container and map project folder into docker container:
 
-    - run "retrain" command in docker image console:  
-        python tensorflow/examples/image_retraining/retrain.py \  
+        docker run -it -v ~/house:/house  gcr.io/tensorflow/tensorflow:latest-devel`
+        cd /house`
+    
+    3.2 Training images:  
+
+        python tensorflow/examples/image_retraining/retrain.py 
             --bottleneck_dir=/house/bottlenecks \  
             --how_many_training_steps 4000 \  
             --model_dir=/house/inception \  
             --output_graph=/house/retrained_graph.pb \  
             --output_labels=/house/retrained_labels.txt \  
-            --image_dir /house/training  
-    - create python script - lable_image.py - to classify images by using retrained_graph.pb and retrained_labels.txt.
+            --image_dir /house/training.
 
-3. After having lable_image.py script. I classify about 5000 images from 60,000 images and check manually to quarantee that they are classified correctly. We will have training data set contains some thousands of images after this step.  
+    Training output is a graph and folder data: **retrained_graph.pb, retrained_labels.txt**  
+    
+    3.3 Classify next images by label_image.py
+    
+        python label_image.py -t image_folders | image file
+    After this commands, images will be moved to images folder above accordingly.
+    
+    3.4 Check again images folder above manually to correct if neccessary.
+    
+    **_Repeat steps from 3.2 to 3.4 for all images to create better training model_**
+   
+4. **Use label_image.py script to predict images with training model data above.**  
+    Finally, we can use training mode data above to predict images
 
-4. Continue running retrain step to archive a better model. We loop step 2->3 about 3-4 times to have the best model.  
+        python label_image.py image_folders | image file
+    
+    **Example:**
+        
+        python label_image.py tests/house12.jpg
+        
+    **Output:**
+    >   outside (score = 0.99226)
+    >   inside (score = 0.00475)
+    >   map (score = 0.00227)
+    >   floor plans (score = 0.00072)
 
-5. Use lable_image.py script to predict with all remaining images.  
-Here is project folder structure after classification:  
-    - bottlenecks : a folder stores cached training data for training process  
-    - inception : a folder stores google's inceptionv3 model data  
-    - label_image.py: python script is used to classify images in training-images folder.    
-        this script will use retrained model retrained_graph.pb and labels etrained_labels.txt to decide the classification for an image.  
-    - prediction : python script will detect images and move them to below subfolder of this folder  
-        - floor_plans  
-        - inside  
-        - map  
-        - outside  
-    - retrained_graph.pb : graph model which was be retrained from google's inceptionv3 model  
-    - retrained_labels.txt : contains a list of label we want to classify (floor plans, inside, map, outside)  
-    - training : image data is used for training process  
-        - floor_plans  
-        - inside  
-        - map  
-        - outside  
-    - unclassified-images : contains unclassified images  
+    With result above, outside probability = 99.22%
