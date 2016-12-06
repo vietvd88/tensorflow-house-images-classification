@@ -52,7 +52,7 @@ Here are steps to create training data model over 60,000 images into 4 classes: 
         python label_image.py --output_dir=prediction/ --image_path=unclassified-images/ --threshold=90  
         
     - image_path: a unclassified folder or image (only support jpeg images now)  
-    - output_dir: a folder to hold images after classifying  
+    - output_dir: a folder to hold images after classifying. If it is set, images in image_path will be removed  
     - threshold: Percent threshold to decide an image is belong to a class  
     
     **Example:**
@@ -82,3 +82,5 @@ Here are steps to create training data model over 60,000 images into 4 classes: 
     72 images can not be classified because:
     - some of them is not clear enough even checking by manual.
     - some of them is different from tranining set. So we need to add more training images to improve training model. Ex: house/apartment in Vietnam, ..
+
+    **Note:** After classification with option --output_dir, classified images in --image_path will be removed. So we need to checkout sample folder if we want to predict with sample folder again.  
