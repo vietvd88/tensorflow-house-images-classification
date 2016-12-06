@@ -60,10 +60,10 @@ Here are steps to create training data model over 60,000 images into 4 classes: 
         python label_image.py --image_path=tests/house12.jpg
         
     **Output:**
-    >   outside (score = 0.99226)
-    >   inside (score = 0.00475)
-    >   map (score = 0.00227)
-    >   floor plans (score = 0.00072)
+    >   outside (score = 0.99226)  
+    >   inside (score = 0.00475)  
+    >   map (score = 0.00227)  
+    >   floor plans (score = 0.00072)  
 
     With result above, outside probability = 99.22%
     
